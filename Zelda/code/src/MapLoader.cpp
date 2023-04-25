@@ -1,6 +1,10 @@
 #include "../include/MapLoader.h"
 
-bool MapLoader::LoadMaps(std::string path, Map *maps[])
+MapLoader::MapLoader(std::string path):this->path(path) 
+{
+}
+
+bool MapLoader::LoadMaps(Map *maps[])
 {
     bool success = false;
 

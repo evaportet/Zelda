@@ -1,6 +1,8 @@
 #pragma once
 #include "Player.h"
+#include "Vector2.h"
 #include <string>
+#include <assert.h>
 
 #define WALL 'X'
 #define DOOR 'P'
@@ -30,12 +32,16 @@ private:
 
     Player *player;
 
+    int doors;
+    Vector2 *doorPos[];
+
+    //TODO Load map settings from TXT
     bool LoadFromTXT();
 
 public:
     Map(std::string path, ROOMTYPE type, Player* player);
     ~Map();
 
-    void Update();
+    int Update();
     void Draw();
 };

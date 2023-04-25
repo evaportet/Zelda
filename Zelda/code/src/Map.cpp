@@ -1,9 +1,7 @@
 #include "../include/Map.h"
 
-Map::Map(std::string path, ROOMTYPE type, Player* player) : this->path(path), this->type(type), this->player(player)
+Map::Map(std::string path, ROOMTYPE type, Player *player) : this->path(path), this->type(type), this->player(player)
 {
-    // Load map settings from txt
-
     // Declare 2d dynamic array
     map = new char *[height] for (int i = 0; i < height; i++)
     {
@@ -21,29 +19,64 @@ Map::Map(std::string path, ROOMTYPE type, Player* player) : this->path(path), th
                 map[y][x] = EMPTY;
             switch (this->type)
             {
-            case ROOMTYPE::HALL {
-                if (width % 2 == 0) {
+            case ROOMTYPE::HALL:
+            {
+                doors = 2;
+                doorPos = new Vector2[doors];
+                if (width % 2 == 0)
+                {
                     map[0][width / 2] = DOOR;
+                    doorPos[0].x = width / 2;
+                    doorPos[0].y = 0;
                     map[height - 1][width / 2] = DOOR;
-                } else {
+                    doorPos[1].x = width / 2;
+                    doorPos[1].y = height - 1;
+                }
+                else
+                {
                     map[0][(width / 2) + 1] = DOOR;
+                    doorPos[0].x = (width / 2) + 1;
+                    doorPos[0].y = 0;
                     map[height - 1][(width / 2) + 1] = DOOR;
-                } break;
-            } case ROOMTYPE::CAFETERIA {
-                if (width % 2 == 0) {
-                    map[height - 1][width / 2] = DOOR;
-                } else {
-                    map[height - 1][(width / 2) + 1] = DOOR;
-                } break;
-            } case ROOMTYPE::CLASS {
-                if (width % 2 == 0) {
-                    map[0][width / 2] = DOOR;
-                } else {
-                    map[0][(width / 2) + 1] = DOOR;
-                } break;
-            } 
+                    doorPos[1].x = (width / 2) + 1;
+                    doorPos[1].y = height - 1;
+                }
+                break;
             }
-            map[player.getY()][player.getx()]=PLAYERUP;
+            case ROOMTYPE::CAFETERIA:
+            {
+                doors = 1;
+                doorPos = new Vector2[doors];
+                if (width % 2 == 0)
+                {
+                    map[height - 1][width / 2] = DOOR;
+                }
+                else
+                {
+                    map[height - 1][(width / 2) + 1] = DOOR;
+                    doorPos[0].x = (width / 2) + 1;
+                    doorPos[0].y = height-1;
+                }
+                break;
+            }
+            case ROOMTYPE::CLASS:
+            {
+                doors = 1;
+                doorPos = new Vector2[doors];
+                if (width % 2 == 0)
+                {
+                    map[0][width / 2] = DOOR;
+                }
+                else
+                {
+                    map[0][(width / 2) + 1] = DOOR;
+                    doorPos[0].x = (width / 2) + 1;
+                    doorPos[0].y = 0;
+                }
+                break;
+            }
+            }
+            map[player->getPos().y][player->getPos().x] = PLAYERUP;
         }
     }
 }
@@ -60,16 +93,46 @@ Map::~Map()
     delete[] map;
 }
 
-void Map::Update()
+int Map::Update()
 {
+    int return;
 
+    map[player->getPrevY + Pos().y][player->getPrevPos().x] = EMPTY;
+
+    char playerChar;
+    switch (player->getDirection())
+    {
+    case DIRECTION::UP:
+    {
+        playerChar = PLAYERUP;
+        break;
+    }
+    case DIRECTION::DOWN:
+    {
+        playerChar = PLAYERDOWN;
+        break;
+    }
+    case DIRECTION::LEFT:
+    {
+        playerChar = PLAYERLEFT;
+        break;
+    }
+    case DIRECTION::RIGHT:
+    {
+        playerChar = PLAYERRIGHT;
+        break;
+    }
+    }
+    map[player->getPos().y][player->getPos().x] = playerChar;
 }
 
 void Map::Draw()
 {
-    for (int i=0;i<height;i++){
-        for (int j=0;i<width;j++){
-            std::cout<<map[i][j];
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; i < width; j++)
+        {
+            std::cout << map[i][j];
         }
         std::endl;
     }
@@ -77,4 +140,5 @@ void Map::Draw()
 
 bool LoadFromTXT()
 {
+    MapLoader *loader = new MapLoader(path);
 }

@@ -5,9 +5,12 @@
 
 class MapLoader
 {
+private:
+    std::string path;
+
 public:
-    MapLoader();
+    MapLoader(std::string path);
     ~MapLoader();
 
-    bool LoadMaps(std::string path, Map *maps[]);
+    bool LoadMaps(Map *maps[]);
 };

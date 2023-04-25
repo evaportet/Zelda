@@ -3,5 +3,12 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Game game("../res/settings.txt");
+    game.Start();
+    
+    while(game.running){
+        game.Update();
+        game.Draw();
+        game.FrameControl();
+    }
 }
