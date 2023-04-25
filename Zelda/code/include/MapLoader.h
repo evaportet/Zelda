@@ -12,5 +12,6 @@ public:
     MapLoader(std::string path);
     ~MapLoader();
 
+    //TODO loadmap
     bool LoadMaps(Map *maps[]);
 };

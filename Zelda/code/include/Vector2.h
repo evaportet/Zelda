@@ -9,7 +9,7 @@ public:
 
     int x;
     int y;
-
+    //TODO comparators
     public static Vector2 operator+ (Vector2 a, Vector2 b);
     public static Vector2 operator- (Vector2 a, Vector2 b);
     public static Vector2 operator/ (Vector2 a, int b);

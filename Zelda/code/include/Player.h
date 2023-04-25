@@ -18,7 +18,7 @@ private:
 public:
     Player();
     ~Player();
-
+    //TODO declare functions
     DIRECTION getDirection();
     Vector2 getPos();
     Vector2 getPrevPos()

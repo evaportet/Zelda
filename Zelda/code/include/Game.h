@@ -24,7 +24,9 @@ public:
 
     bool running;
 
+    //TODO finish setting up start
     bool Start();
+    //TODO finish change scene
     void Update();
     void Draw();
     void FrameControl();
