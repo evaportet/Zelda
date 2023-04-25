@@ -3,10 +3,11 @@
 #include "Player.h"
 #include "MapLoader.h"
 
-class Game{
+class Game
+{
 private:
     int rooms = 4;
-    Map* maps[];
+    Map *maps[];
 
 public:
     Game(std::string path);

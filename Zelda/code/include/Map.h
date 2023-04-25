@@ -2,9 +2,23 @@
 #include "Player.h"
 #include <string>
 
-enum class ROOMTYPE {CLASS, HALL, CAFETERIA};
+#define WALL 'X'
+#define DOOR 'P'
+#define PLAYERUP '^'
+#define PLAYERDOWN 'v'
+#define PLAYERLEFT '<'
+#define PLAYERRIGHT '>'
+#define EMPTY ' '
 
-class Map{
+enum class ROOMTYPE
+{
+    CLASS,
+    HALL,
+    CAFETERIA
+};
+
+class Map
+{
 private:
     std::string path;
     ROOMTYPE type;
@@ -12,15 +26,16 @@ private:
     int height;
     int width;
     int numEnemies;
+    char **map;
 
-    Player* player;
+    Player *player;
 
     bool LoadFromTXT();
 
 public:
-    Map(std::string path);
+    Map(std::string path, ROOMTYPE type, Player* player);
     ~Map();
 
+    void Update();
     void Draw();
-
 };

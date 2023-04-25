@@ -1,6 +1,5 @@
 #include "../include/Game.h"
 
-Game::Game(std::string path){
-    
-
+Game::Game(std::string path)
+{
 }

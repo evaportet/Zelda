@@ -1,5 +1,5 @@
 #pragma once
 
-class Player{
-
+class Player
+{
 };
