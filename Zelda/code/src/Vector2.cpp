@@ -1,33 +1,33 @@
 #include "../include/Vector2.h"
 
-Vector2::Vector2(int x, int y): this->x(x), this->y(y)
+Vector2::Vector2(int _x, int _y): x(_x), y(_y)
 {
 }
 
-Vector2 Vector2::operator+ (Vector2 a, Vector2 b){
+Vector2 Vector2::operator+ (Vector2 a){
     Vector2 c;
-    c.x=a.x+b.x;
-    c.y=a.y+b.y;
+    c.x=x+a.x;
+    c.y=y+a.y;
     return c;
 }  
 
-Vector2 Vector2::operator- (Vector2 a, Vector2 b){
+Vector2 Vector2::operator- (Vector2 a){
     Vector2 c;
-    c.x=a.x-b.x;
-    c.y=a.y-b.y;
+    c.x=x-a.x;
+    c.y=y-a.y;
     return c;
 }  
 
-Vector2 Vector2::operator/ (Vector2 a, int b){
+Vector2 Vector2::operator/ (int a){
     Vector2 c;
-    c.x=a.x/b;
-    c.y=a.y/b;
+    c.x=x/a;
+    c.y=y/a;
     return c;
 }  
 
-Vector2 Vector2::operator* (Vector2 a, int b){
+Vector2 Vector2::operator* (int a) {
     Vector2 c;
-    c.x=a.x*b;
-    c.y=a.y*b;
+    c.x = x * a;
+    c.y = y * a;
     return c;
-}  
+}

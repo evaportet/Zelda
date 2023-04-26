@@ -1,11 +1,12 @@
 #include "../include/Map.h"
 
-Map::Map(std::string path, ROOMTYPE type, Player *player) : this->path(path), this->type(type), this->player(player)
+Map::Map(ROOMTYPE _type, Player *_player) : type(_type), player(_player)
 {
     // Declare 2d dynamic array
-    map = new char *[height] for (int i = 0; i < height; i++)
+    map = new char *[height];
+    for (int i = 0; i < height; i++)
     {
-        map[i] = new char *[width];
+        map[i] = new char [width];
     }
 
     // Set all walls
@@ -13,7 +14,7 @@ Map::Map(std::string path, ROOMTYPE type, Player *player) : this->path(path), th
     {
         for (int x = 0; x < width; x++)
         {
-            if (y == 0 || x == 0 || y = height - 1 || x = width - 1)
+            if (y == 0 || x == 0 || y == height - 1 || x == width - 1)
                 map[y][x] = WALL;
             else
                 map[y][x] = EMPTY;
@@ -95,9 +96,9 @@ Map::~Map()
 
 int Map::Update()
 {
-    int return;
+    int retrn;
 
-    map[player->getPrevY + Pos().y][player->getPrevPos().x] = EMPTY;
+    map[player->getPrevPos().y][player->getPrevPos().x] = EMPTY;
 
     char playerChar;
     switch (player->getDirection())
@@ -124,6 +125,7 @@ int Map::Update()
     }
     }
     map[player->getPos().y][player->getPos().x] = playerChar;
+    return 0;
 }
 
 void Map::Draw()
@@ -134,11 +136,18 @@ void Map::Draw()
         {
             std::cout << map[i][j];
         }
-        std::endl;
+        std::cout<<std::endl;
     }
 }
 
-bool LoadFromTXT()
+void Map::SetPlayer(Player* _player)
 {
-    MapLoader *loader = new MapLoader(path);
+    player = _player;
+}
+
+void Map::SetMap(int h, int w, int enemies, ROOMTYPE _type){
+    height=h;
+    width=w;
+    numEnemies=enemies;
+    type = _type;
 }

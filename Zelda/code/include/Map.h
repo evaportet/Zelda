@@ -3,6 +3,7 @@
 #include "Vector2.h"
 #include <string>
 #include <assert.h>
+#include <iostream>
 
 #define WALL 'X'
 #define DOOR 'P'
@@ -14,15 +15,14 @@
 
 enum class ROOMTYPE
 {
-    CLASS,
-    HALL,
-    CAFETERIA
+    CLASS = 0,
+    HALL = 1,
+    CAFETERIA = 2
 };
 
 class Map
 {
 private:
-    std::string path;
     ROOMTYPE type;
 
     int height;
@@ -33,15 +33,16 @@ private:
     Player *player;
 
     int doors;
-    Vector2 *doorPos[];
-
-    //TODO Load map settings from TXT
-    bool LoadFromTXT();
+    Vector2 *doorPos;
 
 public:
-    Map(std::string path, ROOMTYPE type, Player* player);
+    Map(ROOMTYPE _type, Player* _player);
+    Map() = default;
     ~Map();
 
     int Update();
     void Draw();
+    
+    void SetPlayer(Player* _player);
+    void SetMap(int height, int width, int numEnemies, ROOMTYPE _type);
 };

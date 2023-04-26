@@ -7,19 +7,21 @@ enum class DIRECTION
     DOWN,
     LEFT,
     RIGHT
-}
+};
 
 class Player
 {
 private:
     DIRECTION direction;
     Vector2 pos;
-    Vector2 prevPos
+    Vector2 prevPos;
 public:
     Player();
     ~Player();
     //TODO declare functions
     DIRECTION getDirection();
     Vector2 getPos();
-    Vector2 getPrevPos()
+    Vector2 getPrevPos();
+
+    void Update();
 };

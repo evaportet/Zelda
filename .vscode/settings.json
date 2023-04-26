@@ -3,5 +3,6 @@
     "files.associations": {
         "map": "cpp",
         "xiosbase": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": true
 }

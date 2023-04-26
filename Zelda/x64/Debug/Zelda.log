@@ -1,0 +1,3 @@
+﻿  MapLoader.cpp
+C:\Users\HOTLINE\Documents\Git\Zelda\Zelda\code\src\MapLoader.cpp(16,13): warning C4101: 'num': variable local sin referencia
+  Zelda.vcxproj -> C:\Users\HOTLINE\Documents\Git\Zelda\x64\Debug\Zelda.exe

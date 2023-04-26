@@ -7,11 +7,12 @@ class MapLoader
 {
 private:
     std::string path;
+    int rooms;
 
 public:
-    MapLoader(std::string path);
-    ~MapLoader();
+    MapLoader(std::string _path, int _rooms);
+    ~MapLoader()=default;
 
     //TODO loadmap
-    bool LoadMaps(Map *maps[]);
+    bool LoadMaps(Map *maps);
 };

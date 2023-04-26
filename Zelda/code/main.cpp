@@ -3,7 +3,7 @@
 
 int main()
 {
-    Game game("../res/settings.txt");
+    Game game("res/settings.txt");
     game.Start();
     
     while(game.running){
@@ -11,4 +11,5 @@ int main()
         game.Draw();
         game.FrameControl();
     }
+
 }
