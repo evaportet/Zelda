@@ -127,7 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Zelda.cpp" />
+    <ClCompile Include="code\main.cpp" />
+    <ClCompile Include="code\src\Game.cpp" />
+    <ClCompile Include="code\src\Map.cpp" />
+    <ClCompile Include="code\src\MapLoader.cpp" />
+    <ClCompile Include="code\src\Player.cpp" />
+    <ClCompile Include="code\src\Vector2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\include\Game.h" />
+    <ClInclude Include="code\include\Map.h" />
+    <ClInclude Include="code\include\MapLoader.h" />
+    <ClInclude Include="code\include\Player.h" />
+    <ClInclude Include="code\include\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
