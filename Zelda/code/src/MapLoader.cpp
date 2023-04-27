@@ -13,6 +13,7 @@ bool MapLoader::LoadMaps(Map *maps)
     if (file.is_open())
     {
         success = true;
+        int num;
         char dump;
         for (int i = 0; i < rooms; i++) {
             int height, width, numEnemies;
