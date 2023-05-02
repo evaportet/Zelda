@@ -10,17 +10,17 @@ Player::~Player()
 
 DIRECTION Player::getDirection()
 {
-	return DIRECTION();
+	return direction;
 }
 
 Vector2 Player::getPos()
 {
-	return Vector2();
+	return pos;
 }
 
 Vector2 Player::getPrevPos()
 {
-	return Vector2();
+	return prevPos;
 }
 
 void Player::Update()
