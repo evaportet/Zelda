@@ -1,9 +1,5 @@
 #include "../include/Player.h"
 
-Player::Player()
-{
-}
-
 Player::~Player()
 {
 }
@@ -25,6 +21,7 @@ Vector2 Player::getPrevPos()
 
 void Player::Movement(const Vector2& direction)
 {
+    prevPos = pos;
 	pos = pos + direction;
 }
 

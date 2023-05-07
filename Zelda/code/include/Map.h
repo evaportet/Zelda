@@ -43,6 +43,5 @@ public:
     int Update();
     void Draw();
     
-    void SetPlayer(Player* _player);
     void SetMap(int height, int width, int numEnemies, ROOMTYPE _type);
 };

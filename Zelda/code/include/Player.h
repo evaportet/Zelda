@@ -21,7 +21,7 @@ private:
     Vector2 prevPos;
 
 public:
-     Player(int initialX, int initialY) : pos(initialX, initialY) {}
+     Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY) {}
     ~Player();
 
     //TODO declare functions
