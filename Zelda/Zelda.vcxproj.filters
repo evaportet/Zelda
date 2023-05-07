@@ -33,6 +33,9 @@
     <ClCompile Include="code\main.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\src\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\include\Game.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\include\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\include\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector2.h"
+#include "InputManager.h"
 
 enum class DIRECTION
 {
@@ -12,16 +13,21 @@ enum class DIRECTION
 class Player
 {
 private:
+    //input manager
+    InputManager inputManager;
+
     DIRECTION direction;
     Vector2 pos;
     Vector2 prevPos;
+
 public:
-    Player();
+     Player(int initialX, int initialY) : pos(initialX, initialY) {}
     ~Player();
+
     //TODO declare functions
     DIRECTION getDirection();
     Vector2 getPos();
     Vector2 getPrevPos();
-
+    void Movement(const Vector2& pos);
     void Update();
 };
