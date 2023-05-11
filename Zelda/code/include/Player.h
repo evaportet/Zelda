@@ -16,12 +16,13 @@ private:
     //input manager
     InputManager inputManager;
 
+
     DIRECTION direction;
     Vector2 pos;
     Vector2 prevPos;
 
 public:
-     Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY) {}
+    Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY), direction(DIRECTION::UP) {}
     ~Player();
 
     //TODO declare functions

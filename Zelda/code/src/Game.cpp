@@ -2,33 +2,17 @@
 
 Game::Game(std::string path)
 {
-	player = new Player(3, 5);
+	player = new Player(3, 4);
 	loader = new MapLoader(path, rooms);
 	maps = new Map[rooms];
-	for (int i = 0; i < rooms; i++) {
-		switch (i)
-		{
-		case 0:
-			maps[i] = Map(ROOMTYPE::CLASS, player);
-			break;
-		case 1:
-			maps[i] = Map(ROOMTYPE::HALL, player);
-			break;
-		case 2:
-			maps[i] = Map(ROOMTYPE::CAFETERIA, player);
-			break;
-		default:
-			break;
-		}
-	}
 	running = true;
 }
 
 Game::~Game()
-{
-	delete[] maps;
+{	delete[] maps;
 	delete loader;
 	delete player;
+
 }
 
 void Game::Start()
@@ -38,13 +22,14 @@ void Game::Start()
 		std::cout << "Error 404: file not found";
 	}
 	currentMap = CLASS;
+	maps[currentMap].UpdatePlayer(player->getPos(), player->getPrevPos(), player->getDirection());
 }
 
 void Game::Update()
 {
 	player->Update();
 	currentMap = maps[currentMap].Update();
-
+	maps[currentMap].UpdatePlayer(player->getPos(), player->getPrevPos(), player->getDirection());
 }
 
 void Game::Draw()
