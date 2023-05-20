@@ -1,18 +1,22 @@
 #pragma once
 #include "Map.h"
+#include "Game.h"
 #include <iostream>
 #include <fstream>
 
+//this is now a singleton
 class MapLoader
 {
 private:
-    std::string path;
-    int rooms;
+    int rooms = 3;
+
+    MapLoader();
+    static MapLoader* instance;
 
 public:
-    MapLoader(std::string _path, int _rooms);
-    ~MapLoader()=default;
+    ~MapLoader() = default;
 
-    //TODO loadmap
-    bool LoadMaps(Map *maps);
+    bool LoadMaps(Map *maps, std::string path, Player* player);
+	
+    static MapLoader* GetInstance();
 };

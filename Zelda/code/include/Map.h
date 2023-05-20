@@ -15,34 +15,31 @@
 
 enum class ROOMTYPE
 {
-    CLASS = 0,
-    HALL = 1,
-    CAFETERIA = 2
+	CLASS = 0,
+	HALL = 1,
+	CAFETERIA = 2
 };
 
 class Map
 {
 private:
-    ROOMTYPE type;
+	ROOMTYPE type;
 
-    int height;
-    int width;
-    int numEnemies;
-    char **map;
+	int height;
+	int width;
+	int numEnemies;
+	char** map;
 
-    Player *player;
+	Player* player;
 
-    int doors;
-    Vector2 *doorPos;
+	int doors;
+	Vector2* doorPos;
 
 public:
-    Map(ROOMTYPE _type, Player* _player);
-    Map() = default;
-    ~Map();
+	Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type);
+	Map() = default;
+	~Map();
 
-    int Update();
-    void UpdatePlayer(Vector2 playerPos, Vector2 prevPlayerPos, DIRECTION direction);
-    void Draw();
-    
-    void SetMap(int height, int width, int numEnemies, ROOMTYPE _type);
+	int Update();
+	void Draw();
 };

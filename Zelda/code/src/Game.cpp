@@ -2,34 +2,34 @@
 
 Game::Game(std::string path)
 {
-	player = new Player(3, 4);
-	loader = new MapLoader(path, rooms);
+	player = new Player(3, 5);
 	maps = new Map[rooms];
+	if (!(MapLoader::GetInstance()->LoadMaps(maps, path, player)))
+	{
+		std::cout << "Error moading maps";
+		running = false;
+	}
+	else
+		std::cout << "Map loading was successful";
+	currentMap = CLASS;
 	running = true;
 }
 
 Game::~Game()
-{	delete[] maps;
-	delete loader;
+{
+	delete[] maps;
 	delete player;
-
 }
 
 void Game::Start()
 {
-	if (!(loader->LoadMaps(maps))) {
-		running = false;
-		std::cout << "Error 404: file not found";
-	}
-	currentMap = CLASS;
-	maps[currentMap].UpdatePlayer(player->getPos(), player->getPrevPos(), player->getDirection());
 }
 
 void Game::Update()
 {
 	player->Update();
 	currentMap = maps[currentMap].Update();
-	maps[currentMap].UpdatePlayer(player->getPos(), player->getPrevPos(), player->getDirection());
+
 }
 
 void Game::Draw()
@@ -39,4 +39,9 @@ void Game::Draw()
 
 void Game::FrameControl()
 {
+}
+
+Player* Game::GetPlayer()
+{
+	return player;
 }

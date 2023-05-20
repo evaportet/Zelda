@@ -16,7 +16,6 @@ private:
     int rooms = 3;
     int currentMap;
     Map *maps;
-    MapLoader *loader;
     Player* player;
 
 public:
@@ -31,4 +30,6 @@ public:
     void Draw();
     //TODO framecontrol
     void FrameControl();
+
+    Player* GetPlayer();
 };

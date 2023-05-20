@@ -32,34 +32,30 @@ void Player::Update()
         
         if (inputManager.isKeyPressed()) {
             input = inputManager.getKey();
-            Vector2 dir(0, 0);
+            Vector2 direction(0, 0);
            
             switch (input) {
             case 'a':
             case 'A':
-                dir.x = -1;
-                direction = DIRECTION::LEFT;
+                direction.x = -1;
                 break;
 
             case 'd':
             case 'D':
-                dir.x = 1;
-                direction = DIRECTION::RIGHT;
+                direction.x = 1;
                 break;
 
             case 'w':
             case 'W':
-                dir.y = -1;
-                direction = DIRECTION::RIGHT;
+                direction.y = -1;
                 break;
 
             case 's':
             case 'S':
-                direction = DIRECTION::RIGHT;
-                dir.y = 1;
+                direction.y = 1;
                 break;
             }
             
-            Movement(dir);
+            Movement(direction);
         }
 }
