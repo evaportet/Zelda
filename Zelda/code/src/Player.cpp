@@ -51,18 +51,23 @@ void Player::Update()
         //InputManager
         if (GetAsyncKeyState(VK_UP) & 0x8000) {
             Movement(pos, 0, -1); //Up
+            direction = DIRECTION::UP;
         }
         if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
             Movement(pos, 0, 1); //Down
+            direction = DIRECTION::DOWN;
         }
         if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
             Movement(pos, -1, 0); //Left
+            direction = DIRECTION::LEFT;
         }
         if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
             Movement(pos, 1, 0); //Right
+            direction = DIRECTION::RIGHT;
         }
-
-        //Delay
-        Sleep(100);
     }
+}
+
+void Player::Draw()
+{
 }

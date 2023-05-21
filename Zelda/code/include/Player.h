@@ -30,6 +30,8 @@ public:
     DIRECTION getDirection();
     Vector2 getPos();
     Vector2 getPrevPos();
+
     void Movement(Vector2& pos, int dx, int dy);
     void Update();
+    void Draw();
 };
