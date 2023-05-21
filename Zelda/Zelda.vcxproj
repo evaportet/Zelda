@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\src\Game.cpp" />
-    <ClCompile Include="code\src\InputManager.cpp" />
     <ClCompile Include="code\src\Map.cpp" />
     <ClCompile Include="code\src\MapLoader.cpp" />
     <ClCompile Include="code\src\Player.cpp" />
@@ -137,7 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\include\Game.h" />
-    <ClInclude Include="code\include\InputManager.h" />
     <ClInclude Include="code\include\Map.h" />
     <ClInclude Include="code\include\MapLoader.h" />
     <ClInclude Include="code\include\Player.h" />

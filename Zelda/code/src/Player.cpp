@@ -4,6 +4,14 @@ Player::~Player()
 {
 }
 
+void Player::gotoxy(int x, int y)
+{
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
 DIRECTION Player::getDirection()
 {
 	return direction;
@@ -19,47 +27,42 @@ Vector2 Player::getPrevPos()
 	return prevPos;
 }
 
-void Player::Movement(const Vector2& direction)
+void Player::Movement(Vector2& pos, int dx, int dy)
 {
-    prevPos = pos;
-	pos = pos + direction;
+    /*prevPos = pos;
+	pos = pos + direction;*/
+
+    pos.x += dx;
+    pos.y += dy;
 }
 
 
 void Player::Update()
 {
-        char input;
-        
-        if (inputManager.isKeyPressed()) {
-            input = inputManager.getKey();
-            Vector2 dir(0, 0);
-           
-            switch (input) {
-            case 'a':
-            case 'A':
-                dir.x = -1;
-                direction = DIRECTION::LEFT;
-                break;
+    //////MOVEMENT//////
+    while (true) {
+        // Clear
+        system("cls");
 
-            case 'd':
-            case 'D':
-                dir.x = 1;
-                direction = DIRECTION::RIGHT;
-                break;
+        // Draw
+        gotoxy(pos.x, pos.y);
+        //std::cout << "P";
 
-            case 'w':
-            case 'W':
-                dir.y = -1;
-                direction = DIRECTION::RIGHT;
-                break;
-
-            case 's':
-            case 'S':
-                direction = DIRECTION::RIGHT;
-                dir.y = 1;
-                break;
-            }
-            
-            Movement(dir);
+        //InputManager
+        if (GetAsyncKeyState(VK_UP) & 0x8000) {
+            Movement(pos, 0, -1); //Up
         }
+        if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+            Movement(pos, 0, 1); //Down
+        }
+        if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+            Movement(pos, -1, 0); //Left
+        }
+        if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+            Movement(pos, 1, 0); //Right
+        }
+
+        //Delay
+        Sleep(100);
+    }
 }
