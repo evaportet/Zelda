@@ -1,24 +1,10 @@
 #pragma once
 #include "Player.h"
 #include "Vector2.h"
+#include "Roomtype.h"
 #include <string>
 #include <assert.h>
 #include <iostream>
-
-#define WALL 'X'
-#define DOOR 'P'
-#define PLAYERUP '^'
-#define PLAYERDOWN 'v'
-#define PLAYERLEFT '<'
-#define PLAYERRIGHT '>'
-#define EMPTY ' '
-
-enum class ROOMTYPE
-{
-	CLASS = 0,
-	HALL = 1,
-	CAFETERIA = 2
-};
 
 class Map
 {

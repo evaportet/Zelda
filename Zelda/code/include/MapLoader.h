@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-//this is now a singleton
+//This is now a singleton
 class MapLoader
 {
 private:

@@ -24,10 +24,10 @@ public:
      Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY), direction(DIRECTION::UP) {}
     ~Player();
 
-    //TODO declare functions
     DIRECTION getDirection();
     Vector2 getPos();
     Vector2 getPrevPos();
+
     void Movement(const Vector2& pos);
     void Update();
 };

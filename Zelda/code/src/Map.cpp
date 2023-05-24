@@ -24,67 +24,71 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type) : type(_typ
 				map[y][x] = WALL;
 			else
 				map[y][x] = EMPTY;
-			switch (this->type)
-			{
-			case ROOMTYPE::HALL:
-			{
-				doors = 2;
-				doorPos = new Vector2[doors];
-				if (width % 2 == 0)
-				{
-					map[0][width / 2] = DOOR;
-					doorPos[0].x = width / 2;
-					doorPos[0].y = 0;
-					map[height - 1][width / 2] = DOOR;
-					doorPos[1].x = width / 2;
-					doorPos[1].y = height - 1;
-				}
-				else
-				{
-					map[0][(width / 2) + 1] = DOOR;
-					doorPos[0].x = (width / 2) + 1;
-					doorPos[0].y = 0;
-					map[height - 1][(width / 2) + 1] = DOOR;
-					doorPos[1].x = (width / 2) + 1;
-					doorPos[1].y = height - 1;
-				}
-				break;
-			}
-			case ROOMTYPE::CAFETERIA:
-			{
-				doors = 1;
-				doorPos = new Vector2[doors];
-				if (width % 2 == 0)
-				{
-					map[height - 1][width / 2] = DOOR;
-				}
-				else
-				{
-					map[height - 1][(width / 2) + 1] = DOOR;
-					doorPos[0].x = (width / 2) + 1;
-					doorPos[0].y = height - 1;
-				}
-				break;
-			}
-			case ROOMTYPE::CLASS:
-			{
-				doors = 1;
-				doorPos = new Vector2[doors];
-				if (width % 2 == 0)
-				{
-					map[0][width / 2] = DOOR;
-				}
-				else
-				{
-					map[0][(width / 2) + 1] = DOOR;
-					doorPos[0].x = (width / 2) + 1;
-					doorPos[0].y = 0;
-				}
-				break;
-			}
-			}
 		}
 	}
+
+	//Set doors
+	switch (type)
+	{
+	case ROOMTYPE::HALL:
+	{
+		doors = 2;
+		doorPos = new Vector2[doors];
+		if (width % 2 == 0)
+		{
+			map[0][width / 2] = DOOR;
+			doorPos[0].x = width / 2;
+			doorPos[0].y = 0;
+			map[height - 1][width / 2] = DOOR;
+			doorPos[1].x = width / 2;
+			doorPos[1].y = height - 1;
+		}
+		else
+		{
+			map[0][(width / 2) + 1] = DOOR;
+			doorPos[0].x = (width / 2) + 1;
+			doorPos[0].y = 0;
+			map[height - 1][(width / 2) + 1] = DOOR;
+			doorPos[1].x = (width / 2) + 1;
+			doorPos[1].y = height - 1;
+		}
+		break;
+	}
+	case ROOMTYPE::CAFETERIA:
+	{
+		doors = 1;
+		doorPos = new Vector2[doors];
+		if (width % 2 == 0)
+		{
+			map[height - 1][width / 2] = DOOR;
+		}
+		else
+		{
+			map[height - 1][(width / 2) + 1] = DOOR;
+			doorPos[0].x = (width / 2) + 1;
+			doorPos[0].y = height - 1;
+		}
+		break;
+	}
+	case ROOMTYPE::CLASS:
+	{
+		doors = 1;
+		doorPos = new Vector2[doors];
+		if (width % 2 == 0)
+		{
+			map[0][width / 2] = DOOR;
+		}
+		else
+		{
+			map[0][(width / 2) + 1] = DOOR;
+			doorPos[0].x = (width / 2) + 1;
+			doorPos[0].y = 0;
+		}
+		break;
+	}
+	}
+
+	//Set player
 	map[player->getPos().y][player->getPos().x] = PLAYERUP;
 
 }
