@@ -12,7 +12,7 @@ void Player::gotoxy(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-DIRECTION Player::getDirection()
+Direction Player::getDirection()
 {
 	return direction;
 }
@@ -51,19 +51,19 @@ void Player::Update()
         //InputManager
         if (GetAsyncKeyState(VK_UP) & 0x8000) {
             Movement(pos, 0, -1); //Up
-            direction = DIRECTION::UP;
+            direction = Direction::Up;
         }
         if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
             Movement(pos, 0, 1); //Down
-            direction = DIRECTION::DOWN;
+            direction = Direction::Down;
         }
         if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
             Movement(pos, -1, 0); //Left
-            direction = DIRECTION::LEFT;
+            direction = Direction::Left;
         }
         if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
             Movement(pos, 1, 0); //Right
-            direction = DIRECTION::RIGHT;
+            direction = Direction::Right;
         }
     }
 }

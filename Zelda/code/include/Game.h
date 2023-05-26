@@ -27,7 +27,6 @@ private:
     int currentMap;
     bool playSelected;
     Map *maps;
-    MapLoader *loader;
     Player* player;
     GameState currentState;
 
@@ -38,11 +37,10 @@ public:
     bool running;
 
     void Start();
-
-    //TODO finish change scene
     void Update();
     void Draw();
 
-    //TODO framecontrol
     void FrameControl();
+
+    Player* GetPlayer();
 };

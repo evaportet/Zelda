@@ -1,2 +1,6 @@
-﻿  Game.cpp
-  Zelda.vcxproj -> D:\Descargas\evapo\e n t i\KrakenRepos\ZeldaII\x64\Debug\Zelda.exe
+﻿  main.cpp
+  Game.cpp
+  MapLoader.cpp
+  Vector2.cpp
+  Generando código...
+  Zelda.vcxproj -> C:\Users\HOTLINE\Documents\Git\Zelda\x64\Debug\Zelda.exe
