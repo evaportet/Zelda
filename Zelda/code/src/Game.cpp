@@ -2,7 +2,7 @@
 
 Game::Game(std::string path)
 {
-	player = new Player(3, 5);
+	player = new Player(5, 3);
 	maps = new Map[rooms];
 	if (!(MapLoader::GetInstance()->LoadMaps(maps, path, player)))
 	{

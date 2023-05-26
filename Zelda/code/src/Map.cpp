@@ -14,14 +14,14 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type) : type(_typ
 	}
 
 	// Set all walls
-	for (int y = 0; y < height; y++)
+	for (int j = 0; j < height; j++)
 	{
-		for (int x = 0; x < width; x++)
+		for (int i = 0; i < width; i++)
 		{
-			if (y == 0 || x == 0 || y == height - 1 || x == width - 1)
-				map[y][x] = WALL;
+			if (j == 0 || i == 0 || j == height - 1 || i == width - 1)
+				map[j][i] = WALL;
 			else
-				map[y][x] = EMPTY;
+				map[j][i] = EMPTY;
 		}
 	}
 
@@ -87,6 +87,7 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type) : type(_typ
 	}
 
 	//Set player
+	map[3][5] = PLAYERDOWN;
 	map[player->getPos().y][player->getPos().x] = PLAYERUP;
 
 }
@@ -140,7 +141,7 @@ void Map::Draw()
 {
 	for (int i = 0; i < height; i++)
 	{
-		for (int j = 0; i < width; j++)
+		for (int j = 0; j < width; j++)
 		{
 			std::cout << map[i][j];
 		}
