@@ -4,6 +4,7 @@ Player::~Player()
 {
 }
 
+Direction Player::getDirection()
 void Player::gotoxy(int x, int y)
 {
     COORD coord;

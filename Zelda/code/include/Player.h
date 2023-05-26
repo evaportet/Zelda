@@ -3,31 +3,30 @@
 #include <windows.h>
 #include <iostream>
 
-enum class DIRECTION
+enum class Direction
 {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
+    Up,
+    Down,
+    Left,
+    Right
 };
 
 class Player
 {
 private:
 
-    DIRECTION direction;
+    Direction direction;
     Vector2 pos;
     Vector2 prevPos;
 
 public:
-    Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY), direction(DIRECTION::UP) {}
+     Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY), direction(Direction::Up) {}
     ~Player();
 
+    Direction getDirection();
     //Input Manager
     void gotoxy(int x, int y);
 
-    //TODO declare functions
-    DIRECTION getDirection();
     Vector2 getPos();
     Vector2 getPrevPos();
 
