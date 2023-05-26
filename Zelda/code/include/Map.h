@@ -10,16 +10,15 @@ class Map
 {
 private:
 	ROOMTYPE type;
-
 	int height;
 	int width;
 	int numEnemies;
 	char** map;
+	int doors;
+	Vector2* doorPos;
 
 	Player* player;
 
-	int doors;
-	Vector2* doorPos;
 
 public:
 	Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type);

@@ -4,7 +4,7 @@ Player::~Player()
 {
 }
 
-DIRECTION Player::getDirection()
+Direction Player::getDirection()
 {
 	return direction;
 }

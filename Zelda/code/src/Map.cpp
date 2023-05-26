@@ -5,8 +5,6 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type) : type(_typ
 	height = h;
 	width = w;
 	numEnemies = enemies;
-	type = _type;
-	player = _player;
 
 	// Declare 2d dynamic array
 	map = new char* [height];
@@ -113,22 +111,22 @@ int Map::Update()
 	char playerChar;
 	switch (player->getDirection())
 	{
-	case DIRECTION::UP:
+	case Direction::Up:
 	{
 		playerChar = PLAYERUP;
 		break;
 	}
-	case DIRECTION::DOWN:
+	case Direction::Down:
 	{
 		playerChar = PLAYERDOWN;
 		break;
 	}
-	case DIRECTION::LEFT:
+	case Direction::Left:
 	{
 		playerChar = PLAYERLEFT;
 		break;
 	}
-	case DIRECTION::RIGHT:
+	case Direction::Right:
 	{
 		playerChar = PLAYERRIGHT;
 		break;
