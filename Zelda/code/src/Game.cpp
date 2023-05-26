@@ -24,10 +24,6 @@ Game::~Game()
 
 void Game::Start()
 {
-	if (!(loader->LoadMaps(maps))) {
-		running = false;
-		std::cout << "Error 404: file not found";
-	}
 	currentMap = CLASS;
     currentState = GameState::SplashScreen;
 }

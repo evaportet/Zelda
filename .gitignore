@@ -439,3 +439,5 @@ FodyWeavers.xsd
 *.recipe
 
 *.filters
+
+*.ipch
