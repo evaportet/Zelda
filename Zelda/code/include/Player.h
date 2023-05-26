@@ -2,12 +2,12 @@
 #include "Vector2.h"
 #include "InputManager.h"
 
-enum class DIRECTION
+enum class Direction
 {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
+    Up,
+    Down,
+    Left,
+    Right
 };
 
 class Player
@@ -16,15 +16,15 @@ private:
     //input manager
     InputManager inputManager;
 
-    DIRECTION direction;
+    Direction direction;
     Vector2 pos;
     Vector2 prevPos;
 
 public:
-     Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY), direction(DIRECTION::UP) {}
+     Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY), direction(Direction::Up) {}
     ~Player();
 
-    DIRECTION getDirection();
+    Direction getDirection();
     Vector2 getPos();
     Vector2 getPrevPos();
 
