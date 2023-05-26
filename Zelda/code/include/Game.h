@@ -25,6 +25,7 @@ class Game
 private:
     int rooms = 3;
     int currentMap;
+    bool playSelected;
     Map *maps;
     MapLoader *loader;
     Player* player;
@@ -44,8 +45,4 @@ public:
 
     //TODO framecontrol
     void FrameControl();
-
-    //TODO gameState
-
-
 };
