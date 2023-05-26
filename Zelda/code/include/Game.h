@@ -25,6 +25,7 @@ class Game
 private:
     int rooms = 3;
     int currentMap;
+    bool playSelected;
     Map *maps;
     Player* player;
     GameState currentState;

@@ -13,6 +13,7 @@ Game::Game(std::string path)
 		std::cout << "Map loading was successful";
 	currentMap = CLASS;
 	running = true;
+    playSelected = true;
 }
 
 Game::~Game()
@@ -23,15 +24,16 @@ Game::~Game()
 
 void Game::Start()
 {
+	if (!(loader->LoadMaps(maps))) {
+		running = false;
+		std::cout << "Error 404: file not found";
+	}
+	currentMap = CLASS;
+    currentState = GameState::SplashScreen;
 }
 
 void Game::Update()
 {
-	player->Update();
-	currentMap = maps[currentMap].Update();
-
-    currentState = GameState::SplashScreen;
-
         switch (currentState) {
 
             //////SPLASHSCREEN//////
@@ -40,27 +42,20 @@ void Game::Update()
 
             //////MAINMENU//////
             case GameState::MainMenu:
-                int choice;
-                std::cin >> choice;
-           
-                while (choice != 2){
-                std::cin >> choice;
-
-                    switch (choice) {
-                    case 1:
-                        currentState = GameState::Game;
-                        break;
-
-                    case 2:
-                        std::cout << "Exiting the game...\n";
-                        exit(2);
-                        break;
-
-                    default:
-                        std::cout << "Invalid choice. Please try again.\n";
-                        break;
-                    }
+              
+                if (GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_DOWN))
+                {
+                    playSelected = !playSelected;
                 }
+                
+                if (GetAsyncKeyState(VK_SPACE))
+                {
+                    if (playSelected)
+                        currentState = GameState::Game;
+                    else
+                        exit(3);
+                }
+
                 break;
 
             //////GAME//////
@@ -82,7 +77,7 @@ void Game::Update()
 
 void Game::Draw()
 {
-    currentState = GameState::SplashScreen;
+    system("CLS");
 
         switch (currentState) {
 
@@ -101,17 +96,24 @@ void Game::Draw()
 
                 //DRAW
                 std::cout << "***************** MAIN MENU ****************\n\n" << std::endl;
-                std::cout << "1. Play\n";
-                std::cout << "2. Exit\n";
+                if (playSelected) {
+                    std::cout << "-> Play\n";
+                    std::cout << "   Exit\n";
 
-                break;
+                }
+
+                else {
+                    std::cout << "   Play\n";
+                    std::cout << "-> Exit\n";
+                }
+                
+              break;
 
             //////GAME//////
              case GameState::Game:
 
-
-                player->Draw();
                 maps[currentMap].Draw();
+                player->Draw();
                 currentState = GameState::GameOver;
                 break;
 
