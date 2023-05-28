@@ -8,15 +8,15 @@
 class MapLoader
 {
 private:
-    int rooms = 3;
+	int rooms = 3;
 
-    MapLoader();
-    static MapLoader* instance;
+	MapLoader();
+	static MapLoader* instance;
 
 public:
-    ~MapLoader() = default;
+	~MapLoader() = default;
 
-    bool LoadMaps(Map *maps, std::string path, Player* player);
-	
-    static MapLoader* GetInstance();
+	bool LoadMaps(Map* maps[], std::string path, Player* player);
+
+	static MapLoader* GetInstance();
 };

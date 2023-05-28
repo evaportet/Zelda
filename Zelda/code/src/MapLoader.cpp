@@ -6,7 +6,7 @@ MapLoader::MapLoader()
 {
 }
 
-bool MapLoader::LoadMaps(Map* maps, std::string path, Player* player)
+bool MapLoader::LoadMaps(Map *maps[], std::string path, Player* player)
 {
 	bool success = false;
 
@@ -24,19 +24,20 @@ bool MapLoader::LoadMaps(Map* maps, std::string path, Player* player)
 			file >> dump;
 			file >> numEnemies;
 			file >> dump;
-			//std::cout<<height<<"," << width <<"," << numEnemies;
+			//std::cout << height << "," << width << "," << numEnemies;
+			//maps[i] = nullptr;
 			switch (i)
 			{
 			case 0: {
-				maps[i] = Map(player, height, width, numEnemies, ROOMTYPE::CLASS);
+				maps[i] = new Map(player, height, width, numEnemies, ROOMTYPE::CLASS);
 				break;
 			}
 			case 1: {
-				maps[i] = Map(player, height, width, numEnemies, ROOMTYPE::HALL);
+				maps[i] = new Map(player, height, width, numEnemies, ROOMTYPE::HALL);
 				break;
 			}
 			case 2: {
-				maps[i] = Map(player, height, width, numEnemies, ROOMTYPE::CAFETERIA);
+				maps[i] = new Map(player, height, width, numEnemies, ROOMTYPE::CAFETERIA);
 				break;
 			}
 			}

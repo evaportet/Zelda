@@ -94,7 +94,6 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type) : type(_typ
 
 Map::~Map()
 {
-
 	// Delete 2D dynamic array
 	for (int i = 0; i < height; i++)
 	{

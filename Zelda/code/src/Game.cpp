@@ -3,7 +3,7 @@
 Game::Game(std::string path)
 {
 	player = new Player(5, 3);
-	maps = new Map[rooms];
+	maps = new Map*[rooms];
 	if (!(MapLoader::GetInstance()->LoadMaps(maps, path, player)))
 	{
 		std::cout << "Error moading maps";
@@ -57,7 +57,7 @@ void Game::Update()
             //////GAME//////
             case GameState::Game:
                 player->Update();
-                currentMap = maps[currentMap].Update();
+                currentMap = maps[currentMap]->Update();
 
 
 
@@ -108,7 +108,7 @@ void Game::Draw()
             //////GAME//////
              case GameState::Game:
 
-                maps[currentMap].Draw();
+                maps[currentMap]->Draw();
                 player->Draw();
                 currentState = GameState::GameOver;
                 break;
