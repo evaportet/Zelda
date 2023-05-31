@@ -20,6 +20,7 @@ private:
     Vector2 prevPos;
     int lives = 5;
     bool hasWon = false;
+   
 
 public:
      Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY), direction(Direction::Up) {}
@@ -36,7 +37,13 @@ public:
     int getPlayerLives();
     bool getHasWon();
 
+    //Para las pots
+    int getTotalGems();
+    int totalGems = 0;
+
     void Movement(Vector2& pos, int dx, int dy);
     void Update();
     void Draw();
+
+    
 };
