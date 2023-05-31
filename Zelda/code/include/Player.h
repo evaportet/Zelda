@@ -36,6 +36,8 @@ public:
     int getPlayerLives();
     bool getHasWon();
 
+    void setLives(int amount);
+
     void Movement(Vector2& pos, int dx, int dy);
     void Update();
     void Draw();

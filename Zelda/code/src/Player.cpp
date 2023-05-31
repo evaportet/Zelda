@@ -37,6 +37,11 @@ bool Player::getHasWon()
     return hasWon;
 }
 
+void Player::setLives(int amount)
+{
+    lives = amount;
+}
+
 void Player::Movement(Vector2& pos, int dx, int dy)
 {
     /*prevPos = pos;

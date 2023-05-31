@@ -1,11 +1,7 @@
 #include "../include/Map.h"
 
-Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type) : type(_type), player(_player)
+Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots) : type(_type), player(_player), height(h), width(w), numEnemies(enemies), numPots(pots)
 {
-	height = h;
-	width = w;
-	numEnemies = enemies;
-
 	// Declare 2d dynamic array
 	map = new char* [height];
 	for (int i = 0; i < height; i++)
