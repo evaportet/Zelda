@@ -41,6 +41,8 @@ public:
     int getTotalGems();
     int totalGems = 0;
 
+    void setLives(int amount);
+
     void Movement(Vector2& pos, int dx, int dy);
     void Update();
     void Draw();

@@ -9,11 +9,13 @@
 class Map
 {
 private:
-	ROOMTYPE type;
 	int height;
 	int width;
 	int numEnemies;
+	int numPots;
 	char** map;
+	ROOMTYPE type;
+
 	int doors;
 	Vector2* doorPos;
 
@@ -21,7 +23,7 @@ private:
 
 
 public:
-	Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type);
+	Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots);
 	Map() = default;
 	~Map();
 
