@@ -18,6 +18,8 @@ private:
     Direction direction;
     Vector2 pos;
     Vector2 prevPos;
+    int lives = 5;
+    bool hasWon = false;
 
 public:
      Player(int initialX, int initialY) : pos(initialX, initialY), prevPos(initialX, initialY), direction(Direction::Up) {}
@@ -29,6 +31,10 @@ public:
 
     Vector2 getPos();
     Vector2 getPrevPos();
+
+    //Para el cambio de escenas
+    int getPlayerLives();
+    bool getHasWon();
 
     void Movement(Vector2& pos, int dx, int dy);
     void Update();

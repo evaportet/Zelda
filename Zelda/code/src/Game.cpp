@@ -56,18 +56,22 @@ void Game::Update()
 
             //////GAME//////
             case GameState::Game:
-                player->Update();
-                currentMap = maps[currentMap]->Update();
+                
+              
+                    player->Update();
+                    currentMap = maps[currentMap]->Update();
 
 
 
-                currentState = GameState::GameOver;
-                break;
 
+                    if (player->getHasWon() == true || player->getPlayerLives() <= 0) {
+                        currentState = GameState::GameOver;
+                        break;
+                    }
+                    
+              
             //////GAMEOVER//////
-            case GameState::GameOver:
-                break;
-
+            break;
         }
 }
 
@@ -110,7 +114,7 @@ void Game::Draw()
 
                 maps[currentMap]->Draw();
                 player->Draw();
-                currentState = GameState::GameOver;
+
                 break;
 
             //////GAMEOVER//////
