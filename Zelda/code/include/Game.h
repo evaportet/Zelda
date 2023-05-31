@@ -27,8 +27,8 @@ private:
     int currentMap;
     bool playSelected;
     Map **maps;
-    Player* player;
     GameState currentState;
+    Player* player;
 
 public:
     Game(std::string path);
@@ -41,6 +41,5 @@ public:
     void Draw();
 
     void FrameControl();
-
     Player* GetPlayer();
 };

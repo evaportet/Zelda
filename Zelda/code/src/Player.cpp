@@ -37,6 +37,11 @@ bool Player::getHasWon()
     return hasWon;
 }
 
+int Player::getTotalGems()
+{
+    return totalGems;
+}
+
 void Player::Movement(Vector2& pos, int dx, int dy)
 {
     /*prevPos = pos;
