@@ -27,6 +27,16 @@ Vector2 Player::getPrevPos()
 	return prevPos;
 }
 
+int Player::getPlayerLives()
+{
+    return lives;
+}
+
+bool Player::getHasWon()
+{
+    return hasWon;
+}
+
 void Player::Movement(Vector2& pos, int dx, int dy)
 {
     /*prevPos = pos;
