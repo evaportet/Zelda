@@ -1,15 +1,9 @@
 #pragma once
 #include "Vector2.h"
+#include "Direction.h"
 #include <windows.h>
 #include <iostream>
 
-enum class Direction
-{
-    Up,
-    Down,
-    Left,
-    Right
-};
 
 class Player
 {
