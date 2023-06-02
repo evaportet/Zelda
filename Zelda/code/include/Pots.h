@@ -2,12 +2,11 @@
 #include <cstdlib> 
 #include <ctime>
 #include "Player.h"
+#include "Vector2.h"
 
 class Pots
 {
 private:
-	int totalPots; //se carga desde fichero
-
 	//////GEMS
 	//draw
 	char greenGem = '$';
@@ -22,9 +21,9 @@ private:
 	//player
 	Player* player;
 
-
 public:
-	void Drop();
-
+	char Drop();
+	
+	Vector2 pos;
 };
 
