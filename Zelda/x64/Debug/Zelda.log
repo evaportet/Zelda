@@ -1,2 +1,11 @@
-﻿  MapLoader.cpp
+﻿  main.cpp
+  Game.cpp
+  Map.cpp
+C:\Users\HOTLINE\Documents\Git\Zelda\Zelda\code\src\Map.cpp(113,6): warning C4101: 'retrn': variable local sin referencia
+  MapLoader.cpp
+  Player.cpp
+  Pots.cpp
+C:\Users\HOTLINE\Documents\Git\Zelda\Zelda\code\src\Pots.cpp(5,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+  Vector2.cpp
+  Generando código...
   Zelda.vcxproj -> C:\Users\HOTLINE\Documents\Git\Zelda\x64\Debug\Zelda.exe

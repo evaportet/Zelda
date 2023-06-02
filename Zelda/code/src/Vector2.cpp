@@ -31,3 +31,8 @@ Vector2 Vector2::operator* (int a) {
     c.y = y * a;
     return c;
 }
+
+bool Vector2::operator ==(Vector2 a)
+{
+    return (x == a.x) && (y == a.y);
+}

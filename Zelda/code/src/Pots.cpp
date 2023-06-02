@@ -1,29 +1,25 @@
 #include "../include/Pots.h"
 
-void Pots::Drop()
+char Pots::Drop()
 {
-    srand(time(0)); 
+	srand(time(0));
 
-    int randomNumber = rand() % 100 + 1;
+	int randomNumber = rand() % 100 + 1;
+	char print;
+	if (randomNumber <= 50) { // 50% chance
+		player->totalGems += greenGemValue;
 
-    if (randomNumber <= 50) { // 50% chance
-        player->totalGems += greenGemValue;
+		print = greenGem;
+	}
+	else if (randomNumber <= 85) { // 35% chance
+		player->totalGems += blueGemValue;
 
-        //falta el print, con "greenGem"
+		print = blueGem;
+	}
+	else { // 15% chance
+		player->totalGems += redGemValue;
 
-        
-    }
-    else if (randomNumber <= 85) { // 35% chance
-        player->totalGems += blueGemValue;
-
-        //falta el print, con "blueGem"
-        
-    }
-    else { // 15% chance
-        player->totalGems += redGemValue;
-
-        //falta el print, con "redGem"
-        
-    }
-	
+		print = redGem;
+	}
+	return print;
 }

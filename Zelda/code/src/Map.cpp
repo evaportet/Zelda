@@ -9,6 +9,8 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots) :
 		map[i] = new char[width];
 	}
 
+	potArr = new Pots[numPots];
+
 	// Set all walls
 	for (int j = 0; j < height; j++)
 	{
@@ -83,9 +85,19 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots) :
 	}
 
 	//Set player
-	map[3][5] = PLAYERDOWN;
 	map[player->getPos().y][player->getPos().x] = PLAYERUP;
 
+	//Gen gem pos
+	for (int i = 0; i < numPots; i++) 
+	{
+		do {
+			int randomX = rand() % (width - 2) + 1;
+			int randomY = rand() % (height - 2) + 1;
+			potArr[i].pos = Vector2(randomX, randomY);
+		} while (potArr[i].pos == player->getPos());
+
+		map[potArr[i].pos.y][potArr[i].pos.x] == VASE;
+	}
 }
 
 Map::~Map()

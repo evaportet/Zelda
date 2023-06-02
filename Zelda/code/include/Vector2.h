@@ -14,4 +14,5 @@ public:
     Vector2 operator- (Vector2 a);
     Vector2 operator/ (int a);
     Vector2 operator* (int a);
+    bool operator == (Vector2 a);
 };
