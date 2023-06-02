@@ -1,6 +1,8 @@
 #pragma once
 #include "Vector2.h"
+#include "Direction.h"
 #include <ctime>
+#include <cstdlib>
 
 class Enemy
 {
@@ -10,7 +12,6 @@ private:
 
 public:
 	Enemy();
-	~Enemy();
 
 	void Update();
 

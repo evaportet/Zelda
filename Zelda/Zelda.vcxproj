@@ -144,7 +144,7 @@
     <ClInclude Include="code\include\Player.h" />
     <ClInclude Include="code\include\Pots.h" />
     <ClInclude Include="code\include\Vector2.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="Roomtype.h" />
   </ItemGroup>
   <ItemGroup>
