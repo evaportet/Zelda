@@ -21,7 +21,7 @@ private:
 	Vector2* doorPos;
 
 	Player* player;
-	Pots* potArr;
+	//Pots* potArr;
 
 public:
 	Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots);

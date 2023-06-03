@@ -56,21 +56,18 @@ void Game::Update()
 
             //////GAME//////
             case GameState::Game:
-                
-              
-                    player->Update();
-                    currentMap = maps[currentMap]->Update();
+                              
+                player->Update();
+                currentMap = maps[currentMap]->Update();
 
-
-
-
-                    if (player->getHasWon() == true || player->getPlayerLives() <= 0) {
-                        currentState = GameState::GameOver;
-                        break;
-                    }
-                    
+                if (player->getHasWon() == true || player->getPlayerLives() <= 0) {
+                    currentState = GameState::GameOver;
+                    break;
+                }
+                break;
               
             //////GAMEOVER//////
+            case GameState::GameOver:
             break;
         }
 }
@@ -114,12 +111,18 @@ void Game::Draw()
 
                 maps[currentMap]->Draw();
                 player->Draw();
+                std::cout << std::endl;
+                std::cout << "Lives: " << player->getPlayerLives() << "\t";
+                std::cout << "Score: " << player->getScore() << std::flush;
 
                 break;
 
             //////GAMEOVER//////
             case GameState::GameOver:
-                std::cout << "********************************************\n***************** GAME OVER ****************\n********************************************" << std::endl;
+                std::cout << "********************************************\n";
+                std::cout << "***************** GAME OVER ****************\n";
+                std::cout << "********************************************";
+                std::cout << std::endl;
 
                 std::this_thread::sleep_for(std::chrono::seconds(5));
                 exit(3);
