@@ -13,17 +13,7 @@ private:
 	char blueGem = '#';
 	char redGem = '&';
 
-	//value
-	int greenGemValue = 1;
-	int blueGemValue = 5;
-	int redGemValue = 20;
-
-	//player
-	Player* player;
-
 public:
 	char Drop();
-	
-	Vector2 pos;
 };
 

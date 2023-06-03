@@ -5,7 +5,6 @@ class Vector2
 public:
     Vector2() = default;
     Vector2(int _x, int _y);
-    ~Vector2() = default;
 
     int x;
     int y;
