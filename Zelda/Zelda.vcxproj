@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="code\main.cpp" />
+    <ClCompile Include="code\src\Enemy.cpp" />
     <ClCompile Include="code\src\Game.cpp" />
     <ClCompile Include="code\src\Map.cpp" />
     <ClCompile Include="code\src\MapLoader.cpp" />
@@ -136,13 +137,18 @@
     <ClCompile Include="code\src\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="code\include\Enemy.h" />
     <ClInclude Include="code\include\Game.h" />
     <ClInclude Include="code\include\Map.h" />
     <ClInclude Include="code\include\MapLoader.h" />
     <ClInclude Include="code\include\Player.h" />
     <ClInclude Include="code\include\Pots.h" />
     <ClInclude Include="code\include\Vector2.h" />
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="Roomtype.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Zelda.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
