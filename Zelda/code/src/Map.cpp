@@ -99,6 +99,8 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots) :
 
 		map[randomY][randomX] = VASE;
 	}
+
+	//TODO: Generate Enemies
 }
 
 Map::~Map()
