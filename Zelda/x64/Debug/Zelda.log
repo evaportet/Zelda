@@ -1,2 +1,2 @@
-﻿  Map.cpp
-  Zelda.vcxproj -> D:\Descargas\evapo\e n t i\KrakenRepos\ZeldaII\x64\Debug\Zelda.exe
+﻿Zelda.rc(4): fatal error RC1015: cannot open include file 'resource.h'.
+  

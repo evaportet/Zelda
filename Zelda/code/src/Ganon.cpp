@@ -1,1 +1,1 @@
-#include "Ganon.h"
+#include "../include/Ganon.h"

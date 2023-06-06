@@ -1,6 +1,6 @@
 #include "../include/Enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy(int x, int y) : pos(Vector2(x, y)), prevPos(Vector2(x, y))
 {
 	int randomMovement = rand() % 2;
 	verticalMov = randomMovement;

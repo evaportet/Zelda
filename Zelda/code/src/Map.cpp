@@ -1,6 +1,6 @@
 #include "../include/Map.h"
 
-Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots) : type(_type), player(_player), height(h), width(w), numEnemies(enemies), numPots(pots)
+Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) : type(_type), player(_player), height(h), width(w), numEnemies(_enemies), numPots(pots)
 {
 	// Declare 2d dynamic array
 	map = new char* [height];
@@ -88,7 +88,7 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots) :
 	//map[player->getPos().y][player->getPos().x] = PLAYERUP;
 
 	//Gen gem pos
-	for (int i = 0; i < numPots; i++) 
+	for (int i = 0; i < numPots; i++)
 	{
 		int randomX;
 		int randomY;
@@ -97,10 +97,23 @@ Map::Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots) :
 			randomY = rand() % (height - 2) + 1;
 		} while (Vector2(randomX, randomY) == player->getPos());
 
-		map[randomY][randomX] = VASE;
+		map[randomY][randomX] = HOG;
 	}
 
-	//TODO: Generate Enemies
+	enemies = new Enemy * [numEnemies];
+	//Gen enemies pos
+	for (int i = 0; i < numEnemies; i++)
+	{
+		int randomX;
+		int randomY;
+		do {
+			randomX = rand() % (width - 2) + 1;
+			randomY = rand() % (height - 2) + 1;
+		} while (map[randomX][randomY] != EMPTY);
+
+		enemies[i] = new Enemy(randomX, randomY);
+		map[randomX][randomY] = HOG;
+	}
 }
 
 Map::~Map()
@@ -171,14 +184,14 @@ int Map::Update()
 				}
 
 			} break;
-			case ROOMTYPE::CAFETERIA: 
+			case ROOMTYPE::CAFETERIA:
 			{
 				player->OverridePos(7, 1);
 				retrn = (int)ROOMTYPE::HALL;
 				return retrn;
 			} break;
 			default: break;
-			}			
+			}
 		}
 		if (map[player->getIntendedPos().y][player->getIntendedPos().x] == GREENGEM)
 		{
@@ -188,7 +201,7 @@ int Map::Update()
 		{
 			player->AddScore(5);
 		}
-		else if(map[player->getIntendedPos().y][player->getIntendedPos().x] == REDGEM)
+		else if (map[player->getIntendedPos().y][player->getIntendedPos().x] == REDGEM)
 		{
 			player->AddScore(20);
 		}
@@ -203,8 +216,23 @@ int Map::Update()
 			Pots p;
 			map[player->getAttackPos().y][player->getAttackPos().x] = p.Drop();
 		}
+		else if (map[player->getAttackPos().y][player->getAttackPos().x] == HOG)
+		{
+			for (int i = 0; i < numEnemies; i++) 
+			{
+				if (player->getAttackPos() == enemies[i]->pos)
+					delete enemies[i];
+			}
+		}
 	}
 	map[player->getPos().y][player->getPos().x] = playerChar;
+
+	for (int i = 0; i < numEnemies; i++)
+	{
+		enemies[i]->Update();
+		map[enemies[i]->prevPos.y][enemies[i]->prevPos.x] = EMPTY;
+		map[enemies[i]->pos.y][enemies[i]->pos.x] = HOG;
+	}
 
 	return retrn;
 }

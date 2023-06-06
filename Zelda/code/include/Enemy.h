@@ -11,10 +11,12 @@ private:
 	bool verticalMov; //This will help us decide wether it moves vertically or horizontally
 
 public:
-	Enemy();
+	Enemy(int x, int y);
+	Enemy() = default;
 
 	void Update();
 
 	Vector2 pos;
+	Vector2 prevPos;
 };
 

@@ -3,6 +3,7 @@
 #include "Vector2.h"
 #include "Roomtype.h"
 #include "Pots.h"
+#include "Enemy.h"
 #include <string>
 #include <assert.h>
 #include <iostream>
@@ -21,10 +22,10 @@ private:
 	Vector2* doorPos;
 
 	Player* player;
-	//Pots* potArr;
+	Enemy** enemies;
 
 public:
-	Map(Player* _player, int h, int w, int enemies, ROOMTYPE _type, int pots);
+	Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots);
 	Map() = default;
 	~Map();
 
