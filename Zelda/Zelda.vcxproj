@@ -145,13 +145,9 @@
     <ClInclude Include="code\include\MapLoader.h" />
     <ClInclude Include="code\include\Player.h" />
     <ClInclude Include="code\include\Pots.h" />
-    <ClInclude Include="code\include\resource.h" />
     <ClInclude Include="code\include\Roomtype.h" />
     <ClInclude Include="code\include\Vector2.h" />
     <ClInclude Include="Direction.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Zelda.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -97,7 +97,7 @@ Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) 
 			randomY = rand() % (height - 2) + 1;
 		} while (Vector2(randomX, randomY) == player->getPos());
 
-		map[randomY][randomX] = HOG;
+		map[randomY][randomX] = VASE;
 	}
 
 	enemies = new Enemy * [numEnemies];
@@ -109,10 +109,10 @@ Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) 
 		do {
 			randomX = rand() % (width - 2) + 1;
 			randomY = rand() % (height - 2) + 1;
-		} while (map[randomX][randomY] != EMPTY);
+		} while (map[randomY][randomX] != EMPTY);
 
 		enemies[i] = new Enemy(randomX, randomY);
-		map[randomX][randomY] = HOG;
+		map[randomY][randomX] = HOG;
 	}
 }
 
@@ -218,10 +218,15 @@ int Map::Update()
 		}
 		else if (map[player->getAttackPos().y][player->getAttackPos().x] == HOG)
 		{
-			for (int i = 0; i < numEnemies; i++) 
+			for (int i = 0; i < numEnemies; i++)
 			{
 				if (player->getAttackPos() == enemies[i]->pos)
+				{
 					delete enemies[i];
+					enemies[i] = nullptr;
+					numEnemies--;
+					resizeEnemyArray();
+				}
 			}
 		}
 	}
@@ -229,9 +234,11 @@ int Map::Update()
 
 	for (int i = 0; i < numEnemies; i++)
 	{
-		enemies[i]->Update();
-		map[enemies[i]->prevPos.y][enemies[i]->prevPos.x] = EMPTY;
-		map[enemies[i]->pos.y][enemies[i]->pos.x] = HOG;
+		if (enemies != nullptr) {
+			enemies[i]->Update();
+			map[enemies[i]->prevPos.y][enemies[i]->prevPos.x] = EMPTY;
+			map[enemies[i]->pos.y][enemies[i]->pos.x] = HOG;
+		}
 	}
 
 	return retrn;
@@ -247,4 +254,28 @@ void Map::Draw()
 		}
 		std::cout << std::endl;
 	}
+}
+
+void Map::resizeEnemyArray()
+{
+	Enemy* newArr = new Enemy [numEnemies];
+	int arrSize = sizeof(enemies) / sizeof(enemies[0]);//This returns the size of the array
+
+	for (int i = 0, j = 0; i < arrSize; i++)
+	{
+		if (enemies[i] != nullptr)
+		{
+			newArr[j] = *enemies[i];
+			j++;
+		}
+	}
+
+	delete[] enemies;
+
+	enemies = new Enemy * [numEnemies];
+
+	for (int i = 0; i < numEnemies; i++)
+		enemies[i] = &newArr[i];
+
+	delete[] newArr;
 }

@@ -24,6 +24,8 @@ private:
 	Player* player;
 	Enemy** enemies;
 
+	void resizeEnemyArray();
+
 public:
 	Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots);
 	Map() = default;

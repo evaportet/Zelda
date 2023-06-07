@@ -7,12 +7,12 @@
 class Enemy
 {
 private:
-	int health;
 	bool verticalMov; //This will help us decide wether it moves vertically or horizontally
 
 public:
 	Enemy(int x, int y);
 	Enemy() = default;
+	~Enemy() {}
 
 	void Update();
 
