@@ -11,8 +11,8 @@ private:
 
 public:
 	Enemy(int x, int y);
+	Enemy(const Enemy& enemy);
 	Enemy() = default;
-	~Enemy() {}
 
 	void Update();
 

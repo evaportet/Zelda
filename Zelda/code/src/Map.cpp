@@ -100,7 +100,7 @@ Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) 
 		map[randomY][randomX] = VASE;
 	}
 
-	enemies = new Enemy * [numEnemies];
+	enemies = new Enemy[numEnemies];
 	//Gen enemies pos
 	for (int i = 0; i < numEnemies; i++)
 	{
@@ -111,7 +111,7 @@ Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) 
 			randomY = rand() % (height - 2) + 1;
 		} while (map[randomY][randomX] != EMPTY);
 
-		enemies[i] = new Enemy(randomX, randomY);
+		enemies[i] = Enemy(randomX, randomY);
 		map[randomY][randomX] = HOG;
 	}
 }
@@ -220,12 +220,30 @@ int Map::Update()
 		{
 			for (int i = 0; i < numEnemies; i++)
 			{
-				if (player->getAttackPos() == enemies[i]->pos)
+				if (player->getAttackPos() == enemies[i].pos)
 				{
-					delete enemies[i];
-					enemies[i] = nullptr;
+					Enemy* newArr = new Enemy[numEnemies - 1];
+					bool skiped = false;
+					for (int j = 0; j < numEnemies; j++)
+					{
+						bool skip = false;
+						if (j == i)
+						{
+							skiped = true;
+							skip = true;
+						}
+						if (!skip) {
+							if (!skiped)
+								newArr[j] = enemies[j];
+							else
+								newArr[j - 1] = enemies[j];
+						}
+					}
 					numEnemies--;
-					resizeEnemyArray();
+					delete[] enemies;
+					enemies = newArr;
+					newArr = nullptr;
+					return retrn;
 				}
 			}
 		}
@@ -235,9 +253,9 @@ int Map::Update()
 	for (int i = 0; i < numEnemies; i++)
 	{
 		if (enemies != nullptr) {
-			enemies[i]->Update();
-			map[enemies[i]->prevPos.y][enemies[i]->prevPos.x] = EMPTY;
-			map[enemies[i]->pos.y][enemies[i]->pos.x] = HOG;
+			enemies[i].Update();
+			map[enemies[i].prevPos.y][enemies[i].prevPos.x] = EMPTY;
+			map[enemies[i].pos.y][enemies[i].pos.x] = HOG;
 		}
 	}
 
@@ -254,28 +272,4 @@ void Map::Draw()
 		}
 		std::cout << std::endl;
 	}
-}
-
-void Map::resizeEnemyArray()
-{
-	Enemy* newArr = new Enemy [numEnemies];
-	int arrSize = sizeof(enemies) / sizeof(enemies[0]);//This returns the size of the array
-
-	for (int i = 0, j = 0; i < arrSize; i++)
-	{
-		if (enemies[i] != nullptr)
-		{
-			newArr[j] = *enemies[i];
-			j++;
-		}
-	}
-
-	delete[] enemies;
-
-	enemies = new Enemy * [numEnemies];
-
-	for (int i = 0; i < numEnemies; i++)
-		enemies[i] = &newArr[i];
-
-	delete[] newArr;
 }

@@ -6,6 +6,12 @@ Enemy::Enemy(int x, int y) : pos(Vector2(x, y)), prevPos(Vector2(x, y))
 	verticalMov = randomMovement;
 }
 
+Enemy::Enemy(const Enemy& enemy)
+{
+	pos = enemy.pos;
+	prevPos = enemy.prevPos;
+}
+
 void Enemy::Update()
 {
 	Direction dir;

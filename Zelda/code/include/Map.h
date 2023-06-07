@@ -22,7 +22,7 @@ private:
 	Vector2* doorPos;
 
 	Player* player;
-	Enemy** enemies;
+	Enemy* enemies;
 
 	void resizeEnemyArray();
 
