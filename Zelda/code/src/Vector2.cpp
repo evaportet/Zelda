@@ -36,3 +36,8 @@ bool Vector2::operator ==(Vector2 a)
 {
     return (x == a.x) && (y == a.y);
 }
+
+bool Vector2::operator !=(Vector2 a)
+{
+    return !((x == a.x) && (y == a.y));
+}

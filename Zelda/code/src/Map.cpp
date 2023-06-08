@@ -250,17 +250,26 @@ int Map::Update()
 			}
 		}
 	}
-	map[player->getPos().y][player->getPos().x] = playerChar;
 
 	for (int i = 0; i < numEnemies; i++)
 	{
 		if (enemies != nullptr) {
 			enemies[i].Update();
+			if (map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != WALL
+				&& map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != VASE
+				&& map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != HOG
+				&& enemies[i].GetIntendedPos() != player->getPos())
+				enemies[i].Movement();
+			else if (enemies[i].GetIntendedPos() == player->getPos())
+				player->TakeDmg();
+			else
+				enemies[i].ResetIntendedPos();
 			map[enemies[i].prevPos.y][enemies[i].prevPos.x] = EMPTY;
 			map[enemies[i].pos.y][enemies[i].pos.x] = HOG;
 		}
 	}
 
+	map[player->getPos().y][player->getPos().x] = playerChar;
 	return retrn;
 }
 

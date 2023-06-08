@@ -14,6 +14,7 @@ Enemy::Enemy(const Enemy& enemy)
 
 void Enemy::Update()
 {
+	intendedPos = pos;
 	Direction dir;
 	if (verticalMov)
 	{
@@ -31,4 +32,43 @@ void Enemy::Update()
 		else
 			dir = Direction::Right;
 	}
+
+	if (updateDelay < 3) {
+		updateDelay++;
+		return;
+	}
+	switch (dir)
+	{
+	case Direction::Up:
+		intendedPos.y = pos.y - 1;
+		break;
+	case Direction::Down:
+		intendedPos.y = pos.y + 1;
+		break;
+	case Direction::Left:
+		intendedPos.x = pos.x - 1;
+		break;
+	case Direction::Right:
+		intendedPos.x = pos.x + 1;
+		break;
+	default:
+		break;
+	}
+	updateDelay = 0;
+}
+
+void Enemy::Movement()
+{
+	prevPos = pos;
+	pos = intendedPos;
+}
+
+Vector2 Enemy::GetIntendedPos()
+{
+	return intendedPos;
+}
+
+void Enemy::ResetIntendedPos()
+{
+	intendedPos = pos;
 }
