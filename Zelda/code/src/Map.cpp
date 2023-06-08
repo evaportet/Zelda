@@ -156,7 +156,8 @@ int Map::Update()
 
 	//check player collision
 	if (map[player->getIntendedPos().y][player->getIntendedPos().x] != WALL
-		&& map[player->getIntendedPos().y][player->getIntendedPos().x] != VASE)
+		&& map[player->getIntendedPos().y][player->getIntendedPos().x] != VASE
+		&& map[player->getIntendedPos().y][player->getIntendedPos().x] != HOG)
 	{
 		if (map[player->getIntendedPos().y][player->getIntendedPos().x] == DOOR)
 		{
@@ -222,6 +223,7 @@ int Map::Update()
 			{
 				if (player->getAttackPos() == enemies[i].pos)
 				{
+					map[enemies[i].pos.y][enemies[i].pos.x] = EMPTY;
 					Enemy* newArr = new Enemy[numEnemies - 1];
 					bool skiped = false;
 					for (int j = 0; j < numEnemies; j++)
