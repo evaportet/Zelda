@@ -97,10 +97,10 @@ Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) 
 			randomY = rand() % (height - 2) + 1;
 		} while (Vector2(randomX, randomY) == player->getPos());
 
-		map[randomY][randomX] = HOG;
+		map[randomY][randomX] = VASE;
 	}
 
-	enemies = new Enemy * [numEnemies];
+	enemies = new Enemy[numEnemies];
 	//Gen enemies pos
 	for (int i = 0; i < numEnemies; i++)
 	{
@@ -109,10 +109,10 @@ Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) 
 		do {
 			randomX = rand() % (width - 2) + 1;
 			randomY = rand() % (height - 2) + 1;
-		} while (map[randomX][randomY] != EMPTY);
+		} while (map[randomY][randomX] != EMPTY);
 
-		enemies[i] = new Enemy(randomX, randomY);
-		map[randomX][randomY] = HOG;
+		enemies[i] = Enemy(randomX, randomY);
+		map[randomY][randomX] = HOG;
 	}
 }
 
@@ -156,7 +156,8 @@ int Map::Update()
 
 	//check player collision
 	if (map[player->getIntendedPos().y][player->getIntendedPos().x] != WALL
-		&& map[player->getIntendedPos().y][player->getIntendedPos().x] != VASE)
+		&& map[player->getIntendedPos().y][player->getIntendedPos().x] != VASE
+		&& map[player->getIntendedPos().y][player->getIntendedPos().x] != HOG)
 	{
 		if (map[player->getIntendedPos().y][player->getIntendedPos().x] == DOOR)
 		{
@@ -218,22 +219,57 @@ int Map::Update()
 		}
 		else if (map[player->getAttackPos().y][player->getAttackPos().x] == HOG)
 		{
-			for (int i = 0; i < numEnemies; i++) 
+			for (int i = 0; i < numEnemies; i++)
 			{
-				if (player->getAttackPos() == enemies[i]->pos)
-					delete enemies[i];
+				if (player->getAttackPos() == enemies[i].pos)
+				{
+					map[enemies[i].pos.y][enemies[i].pos.x] = EMPTY;
+					Enemy* newArr = new Enemy[numEnemies - 1];
+					bool skiped = false;
+					for (int j = 0; j < numEnemies; j++)
+					{
+						bool skip = false;
+						if (j == i)
+						{
+							skiped = true;
+							skip = true;
+						}
+						if (!skip) {
+							if (!skiped)
+								newArr[j] = enemies[j];
+							else
+								newArr[j - 1] = enemies[j];
+						}
+					}
+					numEnemies--;
+					delete[] enemies;
+					enemies = newArr;
+					newArr = nullptr;
+					return retrn;
+				}
 			}
 		}
 	}
-	map[player->getPos().y][player->getPos().x] = playerChar;
 
 	for (int i = 0; i < numEnemies; i++)
 	{
-		enemies[i]->Update();
-		map[enemies[i]->prevPos.y][enemies[i]->prevPos.x] = EMPTY;
-		map[enemies[i]->pos.y][enemies[i]->pos.x] = HOG;
+		if (enemies != nullptr) {
+			enemies[i].Update();
+			if (map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != WALL
+				&& map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != VASE
+				&& map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != HOG
+				&& enemies[i].GetIntendedPos() != player->getPos())
+				enemies[i].Movement();
+			else if (enemies[i].GetIntendedPos() == player->getPos())
+				player->TakeDmg();
+			else
+				enemies[i].ResetIntendedPos();
+			map[enemies[i].prevPos.y][enemies[i].prevPos.x] = EMPTY;
+			map[enemies[i].pos.y][enemies[i].pos.x] = HOG;
+		}
 	}
 
+	map[player->getPos().y][player->getPos().x] = playerChar;
 	return retrn;
 }
 

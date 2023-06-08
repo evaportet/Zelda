@@ -52,5 +52,5 @@ public:
     void Update();
     void Draw();
 
-    
+    void TakeDmg();
 };
