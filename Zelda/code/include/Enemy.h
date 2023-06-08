@@ -23,6 +23,5 @@ public:
 	Vector2 prevPos;
 
 	Vector2 GetIntendedPos();
-	void ResetIntendedPos();
 };
 

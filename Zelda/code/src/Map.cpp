@@ -262,8 +262,6 @@ int Map::Update()
 				enemies[i].Movement();
 			else if (enemies[i].GetIntendedPos() == player->getPos())
 				player->TakeDmg();
-			else
-				enemies[i].ResetIntendedPos();
 			map[enemies[i].prevPos.y][enemies[i].prevPos.x] = EMPTY;
 			map[enemies[i].pos.y][enemies[i].pos.x] = HOG;
 		}

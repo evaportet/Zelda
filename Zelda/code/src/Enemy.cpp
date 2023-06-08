@@ -67,8 +67,3 @@ Vector2 Enemy::GetIntendedPos()
 {
 	return intendedPos;
 }
-
-void Enemy::ResetIntendedPos()
-{
-	intendedPos = pos;
-}
