@@ -4,6 +4,7 @@
 #include "Roomtype.h"
 #include "Pots.h"
 #include "Enemy.h"
+#include "Ganon.h"
 #include <string>
 #include <assert.h>
 #include <iostream>
@@ -23,11 +24,12 @@ private:
 
 	Player* player;
 	Enemy* enemies;
+	Ganon* ganon;
 
 	void resizeEnemyArray();
 
 public:
-	Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots);
+	Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots, Ganon* ganon);
 	Map() = default;
 	~Map();
 

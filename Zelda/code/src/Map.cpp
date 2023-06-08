@@ -1,6 +1,6 @@
 #include "../include/Map.h"
 
-Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) : type(_type), player(_player), height(h), width(w), numEnemies(_enemies), numPots(pots)
+Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots, Ganon* ganon) : type(_type), player(_player), height(h), width(w), numEnemies(_enemies), numPots(pots)
 {
 	// Declare 2d dynamic array
 	map = new char* [height];
@@ -68,6 +68,8 @@ Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) 
 	}
 	case ROOMTYPE::CLASS:
 	{
+		this->ganon = ganon;
+		this->ganon->pos = Vector2(width / 2, height / 2);
 		doors = 1;
 		doorPos = new Vector2[doors];
 		if (width % 2 == 0)
@@ -83,9 +85,6 @@ Map::Map(Player* _player, int h, int w, int _enemies, ROOMTYPE _type, int pots) 
 		break;
 	}
 	}
-
-	//Set player
-	//map[player->getPos().y][player->getPos().x] = PLAYERUP;
 
 	//Gen gem pos
 	for (int i = 0; i < numPots; i++)
@@ -249,23 +248,54 @@ int Map::Update()
 				}
 			}
 		}
+		/*else if (map[player->getAttackPos().y][player->getAttackPos().x] == GANON)
+		{
+			
+		}*/
 	}
 
+	//Enemy movement
 	for (int i = 0; i < numEnemies; i++)
 	{
-		if (enemies != nullptr) {
+		if (enemies != nullptr)
+		{
 			enemies[i].Update();
+
 			if (map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != WALL
 				&& map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != VASE
 				&& map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != HOG
+				&& map[enemies[i].GetIntendedPos().y][enemies[i].GetIntendedPos().x] != DOOR
 				&& enemies[i].GetIntendedPos() != player->getPos())
 				enemies[i].Movement();
 			else if (enemies[i].GetIntendedPos() == player->getPos())
 				player->TakeDmg();
+
 			map[enemies[i].prevPos.y][enemies[i].prevPos.x] = EMPTY;
 			map[enemies[i].pos.y][enemies[i].pos.x] = HOG;
 		}
 	}
+
+	//Ganon movement
+	/*if (type == ROOMTYPE::CAFETERIA)
+	{
+
+		ganon->Update();
+		if (map[ganon->intendedPos.y][ganon->intendedPos.x] != WALL
+			&& map[ganon->intendedPos.y][ganon->intendedPos.x] != VASE
+			&& map[ganon->intendedPos.y][ganon->intendedPos.x] != HOG
+			&& map[ganon->intendedPos.y][ganon->intendedPos.x] != DOOR
+			&& ganon->intendedPos != player->getPos())
+			ganon->Movement();
+		else if (ganon->intendedPos == player->getPos())
+		{
+			player->TakeDmg();
+			player->TakeDmg();
+		}
+		map[ganon->prevPos.y][ganon->prevPos.x] = EMPTY;
+		map[ganon->pos.y][ganon->pos.x] = GANON;
+		if (ganon->life == 0)
+			delete ganon;
+	}*/
 
 	map[player->getPos().y][player->getPos().x] = playerChar;
 	return retrn;

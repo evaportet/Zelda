@@ -22,6 +22,8 @@ bool MapLoader::LoadMaps(Map *maps[], std::string path, Player* player)
 		file >> ganonHits;
 		file >> dump;
 		player->setLives(lives);
+		Ganon* ganon = new Ganon();
+		ganon->SetLifes(ganonHits);
 		//std::cout << lives <<"," << ganonHits<<",";
 
 		for (int i = 0; i < rooms; i++) {
@@ -40,15 +42,15 @@ bool MapLoader::LoadMaps(Map *maps[], std::string path, Player* player)
 			switch (i)
 			{
 			case 0: {
-				maps[i] = new Map(player, height, width, numEnemies, ROOMTYPE::CLASS, pots);
+				maps[i] = new Map(player, height, width, numEnemies, ROOMTYPE::CLASS, pots, ganon);
 				break;
 			}
 			case 1: {
-				maps[i] = new Map(player, height, width, numEnemies, ROOMTYPE::HALL, pots);
+				maps[i] = new Map(player, height, width, numEnemies, ROOMTYPE::HALL, pots, ganon);
 				break;
 			}
 			case 2: {
-				maps[i] = new Map(player, height, width, numEnemies, ROOMTYPE::CAFETERIA, pots);
+				maps[i] = new Map(player, height, width, numEnemies, ROOMTYPE::CAFETERIA, pots, ganon);
 				break;
 			}
 			}
